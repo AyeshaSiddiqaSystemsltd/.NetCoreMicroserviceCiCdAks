@@ -50,8 +50,13 @@ steps:
     arguments: '--no-restore --no-build'
   displayName: 'Run Tests'
  
-
-
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/CustomerApi.csproj'
+    arguments: '--configuration $(buildConfiguration) --no-restore'
+  displayName: 'Publish Report'
 # # Create a ZIP of the project 
 - task: ArchiveFiles@2
   displayName: 'Archive files'
